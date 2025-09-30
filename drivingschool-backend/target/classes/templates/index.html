@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DrivesGo!!...</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">
+            <i class="fas fa-car"></i> DrivesGo
+        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/}">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/customers}">
+                            <i class="fas fa-users"></i> Customers
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/instructors}">
+                            <i class="fas fa-chalkboard-teacher"></i> Instructors
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/fees}">
+                            <i class="fas fa-money-bill"></i> Fees
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/tests}">
+                            <i class="fas fa-clipboard-check"></i> Tests
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/registrations}">
+                            <i class="fas fa-user-plus"></i> Registrations
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <div class="row align-items-center" style="min-height: 60vh; padding: 3rem 0;">
+                <div class="col-lg-6">
+                   <h1 class="display-4 fw-bold mb-4" style="color: white;">
+    Welcome to DrivesGo Management System
+</h1>
+                    <p class="lead mb-4" style="color: white;">
+                        Manage your driving school operations efficiently with our comprehensive management system. 
+                        Track customers, instructors, fees, and more all in one place.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a th:href="@{/customers}" class="btn btn-light btn-lg">
+                            <i class="fas fa-users"></i> Manage Customers
+                        </a>
+                        <a th:href="@{/instructors}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-chalkboard-teacher"></i> View Instructors
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <i class="fas fa-car-side" style="font-size: 10rem; color: white;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="container my-5">
+        <h2 class="text-center mb-5">Our Services</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center shadow-sm">
+                    <div class="card-body">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-users fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="card-title">Customer Management</h5>
+                        <p class="card-text">Efficiently manage customer information, course enrollments, and track their progress.</p>
+                        <a th:href="@{/customers}" class="btn btn-primary">View Customers</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center shadow-sm">
+                    <div class="card-body">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-chalkboard-teacher fa-3x text-success"></i>
+                        </div>
+                        <h5 class="card-title">Instructor Management</h5>
+                        <p class="card-text">Manage instructor profiles, courses offered, salaries, and performance tracking.</p>
+                        <a th:href="@{/instructors}" class="btn btn-success">View Instructors</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center shadow-sm">
+                    <div class="card-body">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-money-bill fa-3x text-info"></i>
+                        </div>
+                        <h5 class="card-title">Fee Management</h5>
+                        <p class="card-text">Handle fee collection, payment tracking, discounts, and financial reporting.</p>
+                        <a th:href="@{/fees}" class="btn btn-info text-white">Manage Fees</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 text-center shadow-sm">
+                    <div class="card-body">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-clipboard-check fa-3x text-warning"></i>
+                        </div>
+                        <h5 class="card-title">Test Management</h5>
+                        <p class="card-text">Schedule and manage driving tests, track RTO registrations and test results.</p>
+                        <a th:href="@{/tests}" class="btn btn-warning">View Tests</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 text-center shadow-sm">
+                    <div class="card-body">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-user-plus fa-3x text-danger"></i>
+                        </div>
+                        <h5 class="card-title">Registration Management</h5>
+                        <p class="card-text">Manage user registrations, login credentials, and vehicle registration details.</p>
+                        <a th:href="@{/registrations}" class="btn btn-danger">View Registrations</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Stats Section -->
+    <div class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Quick Statistics</h2>
+            <div class="row text-center">
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <h3 class="text-primary"><i class="fas fa-users"></i></h3>
+                        <h4 id="totalCustomers">-</h4>
+                        <p>Total Customers</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <h3 class="text-success"><i class="fas fa-chalkboard-teacher"></i></h3>
+                        <h4 id="totalInstructors">-</h4>
+                        <p>Total Instructors</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <h3 class="text-info"><i class="fas fa-car"></i></h3>
+                        <h4 id="totalCourses">4</h4>
+                        <p>Available Courses</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <h3 class="text-warning"><i class="fas fa-money-bill"></i></h3>
+                        <h4 id="totalRevenue">₹-</h4>
+                        <p>Total Revenue</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <footer class="bg-dark text-white text-center py-3 mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 DrivesGo Management System. All rights reserved.</p>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructors - DrivesGo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+           <a class="navbar-brand" th:href="@{/}">
+    <i class="fas fa-car"></i> DrivesGo
+</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/customers}">
+                            <i class="fas fa-users"></i> Customers
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/instructors}">
+                            <i class="fas fa-chalkboard-teacher"></i> Instructors
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/fees}">
+                            <i class="fas fa-money-bill"></i> Fees
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2><i class="fas fa-chalkboard-teacher"></i> Instructor Management</h2>
+            <a th:href="@{/instructors/new}" class="btn btn-success">
+                <i class="fas fa-plus"></i> Add New Instructor
+            </a>
+        </div>
+
+        <!-- Statistics Card -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <h5>Average Salary</h5>
+                        <h3 class="text-success" th:text="'₹' + ${averageSalary != null ? #numbers.formatDecimal(averageSalary, 0, 0) : '0'}"></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <h5>Total Instructors</h5>
+                        <h3 class="text-primary" th:text="${#lists.size(instructors)}"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Options -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a th:href="@{/instructors}" class="btn btn-outline-secondary w-100 mb-2">
+                            <i class="fas fa-list"></i> All Instructors
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a th:href="@{/instructors/high-salary}" class="btn btn-outline-success w-100 mb-2">
+                            <i class="fas fa-money-bill-wave"></i> High Salary (>40k)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructors Table -->
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Staff ID</th>
+                                <th>Name</th>
+                                <th>Courses Offered</th>
+                                <th>Experience</th>
+                                <th>Salary</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="instructor : ${instructors}">
+                                <td th:text="${instructor.staffId}"></td>
+                                <td th:text="${instructor.instructorName}"></td>
+                                <td>
+                                    <span class="badge bg-info" th:text="${instructor.coursesOffered}"></span>
+                                </td>
+                                <td th:text="${instructor.experience}"></td>
+                                <td class="text-success fw-bold" th:text="'₹' + ${#numbers.formatDecimal(instructor.salary, 0, 0)}"></td>
+                                <td th:text="${instructor.emailid}"></td>
+                                <td th:text="${instructor.phonenumber}"></td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a th:href="@{/instructors/edit/{id}(id=${instructor.staffId})}" 
+                                           class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a th:href="@{/instructors/delete/{id}(id=${instructor.staffId})}" 
+                                           class="btn btn-sm btn-outline-danger"
+                                           onclick="return confirm('Are you sure you want to delete this instructor?')">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr th:if="${#lists.isEmpty(instructors)}">
+                                <td colspan="8" class="text-center text-muted">
+                                    <i class="fas fa-inbox fa-3x mb-2"></i>
+                                    <br>No instructors found.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
